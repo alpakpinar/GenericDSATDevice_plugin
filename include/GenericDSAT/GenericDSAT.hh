@@ -15,6 +15,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <unordered_map>
 #include <stdint.h>
 
 // Number of registers in the address table, hard code it for now.

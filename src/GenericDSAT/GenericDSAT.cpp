@@ -88,32 +88,38 @@ uint32_t GenericDSAT::GetRegSize(std::string const & reg) {
     
     // To get the size of the register, shift the bit-values to right
     // until we get a 1 in the least significant place.
-    uint32_t bitShiftCount = 0;
-
-    // By default, assume 32-bits for the register
-    uint32_t defaultRegSize = 32;
-
     while ((mask & 0x1) == 0) {
         mask = mask >> 1;
-        bitShiftCount += 1;
     }
 
-    return defaultRegSize - bitShiftCount;
+    // Now, determine the size by counting number of 1-bits
+    uint32_t registerSize = 0;
+    while ((mask & 0x1) == 1) {
+        mask = mask >> 1;
+        registerSize += 1;
+    } 
+    
+    return registerSize;
 }
 
 std::string GenericDSAT::GetRegMode(std::string const & reg) {
     uint8_t mode = addressTable->GetItem(reg)->mode;
-    switch(mode) {
-        case 0:
-        default:
-            return "r";
-        case 1:
-            return "w";
-        case 2:
-            return "a";
-        case 3:
-            return "i";
+
+    // Mode is bitwise, by looking at the individual bits, figure out the permissions
+    // Empty: 0x0, Read: 0x1, Write: 0x2, Action: 0x4
+    std::string permission = "";
+
+    std::unordered_map<std::string, int> permissionMap;
+    permissionMap["r"] = 1
+    permissionMap["w"] = 2
+    permissionMap["a"] = 4
+
+    for (auto item : permissionMap) {
+        if ((mode & item.second) == 1) {
+            permission += item.first;
+        }
     }
+    return permission;
 }
 
 std::string GenericDSAT::GetRegPermissions(std::string const & reg) {
