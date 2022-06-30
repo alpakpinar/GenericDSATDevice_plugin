@@ -14,13 +14,16 @@ GenericDSAT::GenericDSAT(std::string addrTablePath)
     // We'll allocate an array of zeros with that many elements via memset
     size_t maxAddress = addressTable->GetMaxAddress();
     std::cout << "Initializing an array of size: " << maxAddress << std::endl;
-    values.resize(maxAddress);
+    values = new uint32_t[maxAddress];
     memset(values, 0, maxAddress);
 }
 
 GenericDSAT::~GenericDSAT() {
     if (addressTable != NULL) {
         delete addressTable;
+    }
+    if (values != NULL) {
+        delete values;
     }
 }
 
