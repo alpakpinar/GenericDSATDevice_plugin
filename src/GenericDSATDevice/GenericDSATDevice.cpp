@@ -2,10 +2,11 @@
 
 using namespace BUTool;
 
-GenericDSATDevice::GenericDSATDevice(std::string addrTablePath) {
+GenericDSATDevice::GenericDSATDevice(std::vector<std::string> args) {
     /*
      * Allocate the pointers and register the commands in the constructor.
      */
+    std::string addrTablePath = args[0];
     genericDSATPtr = new GenericDSAT(addrTablePath);
     textIO = new BUTextIO();
 

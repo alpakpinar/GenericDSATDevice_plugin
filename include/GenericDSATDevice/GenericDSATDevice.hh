@@ -14,7 +14,7 @@ namespace BUTool {
                 public RegisterHelper {
 
         public:
-            GenericDSATDevice(std::string addrTablePath);
+            GenericDSATDevice(std::vector<std::string> args);
             ~GenericDSATDevice();
         
         private:
@@ -29,13 +29,14 @@ namespace BUTool {
 
     };
 
+    // Register GenericDSATDevice with the DeviceFactory  
     RegisterDevice(GenericDSATDevice,
             "GenericDSAT",
             "file/SM_SN",
             "a",
             "GenericDSAT",
             "Connection file for creating a DSAT-based device"
-            ); // Register GenericDSATDevice with the DeviceFactory  
+            );
 
 }
 
