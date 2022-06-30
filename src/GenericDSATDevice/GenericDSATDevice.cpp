@@ -1,5 +1,7 @@
 #include "GenericDSATDevice/GenericDSATDevice.hh"
 
+using namespace BUTool;
+
 GenericDSATDevice::GenericDSATDevice(std::string addrTablePath) {
     /*
      * Allocate the pointers and register the commands in the constructor.
