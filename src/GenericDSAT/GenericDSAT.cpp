@@ -35,6 +35,13 @@ GenericDSAT::~GenericDSAT() {
     }
 }
 
+std::vector<std::string> GenericDSAT::GetRegsRegex(std::string regex) {
+    /*
+     * Returns an array of register names which match the given regular expression.
+     */
+    return addressTable->GetNames(regex);
+}
+
 uint32_t GenericDSAT::ReadAddress(uint32_t addr) {
     return values[addr];
 }
@@ -52,6 +59,15 @@ void GenericDSAT::WriteAddress(uint32_t addr, uint32_t data) {
 void GenericDSAT::WriteRegister(std::string const & reg, uint32_t data) {
     uint16_t address = addressTable->GetItem(reg)->address;
     values[address] = data;
+}
+
+void GenericDSAT::WriteAction(std::string const & reg) {
+    /*
+     * Write a dummy value (0) to the given register.
+     */
+    uint32_t dummyValue = 0;
+    uint16_t address = addressTable->GetItem(reg)->address;
+    values[address] = dummyValue;
 }
 
 uint32_t GenericDSAT::GetRegAddress(std::string const & reg) {
