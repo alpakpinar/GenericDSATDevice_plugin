@@ -22,7 +22,11 @@ GenericDSAT::GenericDSAT(std::string addrTablePath)
         if (item->address > N_REGISTERS) {
             BUException::INVALID_ADDRESS e;
             e.Append("Address given: ");
-            e.Append(item->address.c_str());
+            
+            char addressStr[10];
+            sprintf(addressStr, "%u", item->address);
+
+            e.Append(addressStr);
             e.Append("\n");
             throw e;
         }
