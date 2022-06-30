@@ -1,13 +1,14 @@
 #include "GenericDSAT/GenericDSAT.hh"
 
-GenericDSAT::GenericDSAT(std::string addrTablePath) {
+GenericDSAT::GenericDSAT(std::string addrTablePath) 
+    : RegisterHelperIO(),
+      statusDisplay((BUTool::RegisterHelperIO*)this)
+{
     /*
      * Allocate an AddressTable with the given path to get addresses and items.
      * Also set up the array and the StatusDisplay object.
      */
     addressTable = new AddressTable(addrTablePath);
-
-    statusDisplay = (BUTool::RegisterHelperIO*)this;
 
     // Get the list of register names and store every value in the array
     std::vector<std::string> registerNames = addressTable->GetNames("*");
