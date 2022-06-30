@@ -16,19 +16,23 @@ LIBRARY_DSAT_DEVICE_OBJECT_FILES = $(patsubst src/%.cpp,obj/%.o,${LIBRARY_DSAT_D
 # Path to DSAT submodule
 DSAT_LIBRARY_DIR = dsat/
 
+BUEXCEPTION_PATH=${BUTOOL_PATH}/external/BUException
+
 # Set up include paths for compiler
 RELATIVE_INCLUDE_PATH = \
 	include \
-	${DSAT_PATH}/include \
-	${BUTOOL_PATH}/include
+	${DSAT_PATH}/include        \
+	${BUTOOL_PATH}/include      \
+	${BUEXCEPTION_PATH}/include
 
 INCLUDE_PATH = $(patsubst %,-I%,$(abspath ${RELATIVE_INCLUDE_PATH}))
 
 # Library paths for linker
 RELATIVE_LIBRARY_PATH = \
 			lib \
-			${DSAT_PATH}/lib   \
-			${BUTOOL_PATH}/lib 
+			${DSAT_PATH}/lib         \
+			${BUTOOL_PATH}/lib       \
+			${BUEXCEPTION_PATH}/lib    
 
 LIBRARY_PATH = $(patsubst %,-L%,$(abspath ${RELATIVE_LIBRARY_PATH}))
 
@@ -53,13 +57,13 @@ _cleanall:
 
 all: _all
 build: _all
-_all: self
+_all: dsat self
 
 butool_env:
 ifdef BUTOOL_PATH
-	$(info using BUTool lib from user defined BUTOOL_PATH=${BUTOOL_PATH})
+	$(info Using BUTool lib from user defined BUTOOL_PATH=${BUTOOL_PATH})
 else
-	$(error Must define BUTOOL_PATH through the command line!)
+	$(error You must define BUTOOL_PATH through the command line (or as an env variable)!)
 endif
 
 self: butool_env ${LIBRARY_DSAT_DEVICE} ${LIBRARY_DSAT}
@@ -78,3 +82,9 @@ obj/%.o : src/%.cpp
 	mkdir -p $(dir $@)
 	mkdir -p {lib,obj}
 	${CXX} ${CXX_FLAGS} -c $< -o $@
+
+# ------------------
+# The DSAT library
+# ------------------
+dsat:
+	make -C ${DSAT_LIBRARY_DIR}
