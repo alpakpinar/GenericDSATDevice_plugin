@@ -40,7 +40,7 @@ LIBRARIES = 	-lToolException     \
 				-lBUTool_BUTextIO   \
 				-lBUTool            \
 				-lBUTool_Helpers    \
-				-ldsat    
+				-ldsat
 
 CXX_FLAGS = -g -O3 -rdynamic -Wall -MMD -MP -fPIC ${INCLUDE_PATH} -Werror -Wno-literal-suffix
 
