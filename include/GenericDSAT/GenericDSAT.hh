@@ -17,9 +17,6 @@
 #include <unordered_map>
 #include <stdint.h>
 
-// Number of registers in the address table, hard code it for now.
-#define N_REGISTERS 1000
-
 typedef std::unordered_map<std::string, std::string> strStrMap;
 
 /*
@@ -63,7 +60,7 @@ class GenericDSAT : public BUTool::RegisterHelperIO {
 
     private:
         // Member data
-        uint32_t values[N_REGISTERS];
+        uint32_t values[];
         AddressTable* addressTable;
     
         // StatusDisplay class instance to use to interact with BUTool's status command

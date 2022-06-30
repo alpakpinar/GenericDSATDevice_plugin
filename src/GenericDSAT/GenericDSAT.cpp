@@ -10,28 +10,11 @@ GenericDSAT::GenericDSAT(std::string addrTablePath)
      */
     addressTable = new AddressTable(addrTablePath);
 
-    // Get the list of register names and store every value in the array
-    std::vector<std::string> registerNames = addressTable->GetNames("*");
-    for (std::string name : registerNames) {
-        Item const * item = addressTable->GetItem(name);
-
-        /* Initialize the spot with a value of 0
-         * Address of the register gives us the array index
-         * First make sure that the address is within array bounds
-         */
-        if (item->address > N_REGISTERS) {
-            BUException::INVALID_ADDRESS e;
-            e.Append("Address given: ");
-            
-            char addressStr[10];
-            sprintf(addressStr, "%u", item->address);
-
-            e.Append(addressStr);
-            e.Append("\n");
-            throw e;
-        }
-        values[item->address] = 0;
-    }
+    // Using the API from DSAT, figure out the maximum address in the address table
+    // We'll allocate an array of zeros with that many elements via memset
+    size_t maxAddress = addressTable->GetMaxAddress();
+    std::cout << "Initializing an array of size: " << maxAddress << std::endl;
+    memset(values, 0, maxAddress);
 }
 
 GenericDSAT::~GenericDSAT() {
@@ -48,6 +31,19 @@ std::vector<std::string> GenericDSAT::GetRegsRegex(std::string regex) {
 }
 
 uint32_t GenericDSAT::ReadAddress(uint32_t addr) {
+    // Check that the address is within the array range
+    size_t arraySize = sizeof(values) / sizeof(uint32_t);
+    if (addr > arraySize) {
+        BUException::INVALID_ADDRESS e;
+        e.Append("Address value out of range: ");
+
+        char addressStr[10];
+        sprintf(addressStr, "%u", addr);
+
+        e.Append(addressStr);
+        e.Append("\n");
+        throw e;
+    }
     return values[addr];
 }
 
@@ -58,6 +54,18 @@ uint32_t GenericDSAT::ReadRegister(std::string const & reg) {
 }
 
 void GenericDSAT::WriteAddress(uint32_t addr, uint32_t data) {
+    size_t arraySize = sizeof(values) / sizeof(uint32_t);
+    if (addr > arraySize) {
+        BUException::INVALID_ADDRESS e;
+        e.Append("Address value out of range: ");
+
+        char addressStr[10];
+        sprintf(addressStr, "%u", addr);
+
+        e.Append(addressStr);
+        e.Append("\n");
+        throw e;
+    }
     values[addr] = data;
 }
 
