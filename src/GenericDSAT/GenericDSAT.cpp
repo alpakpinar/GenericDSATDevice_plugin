@@ -14,6 +14,7 @@ GenericDSAT::GenericDSAT(std::string addrTablePath)
     // We'll allocate an array of zeros with that many elements via memset
     size_t maxAddress = addressTable->GetMaxAddress();
     std::cout << "Initializing an array of size: " << maxAddress << std::endl;
+    values.resize(maxAddress);
     memset(values, 0, maxAddress);
 }
 
