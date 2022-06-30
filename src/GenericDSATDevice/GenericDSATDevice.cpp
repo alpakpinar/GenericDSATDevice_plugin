@@ -2,7 +2,9 @@
 
 using namespace BUTool;
 
-GenericDSATDevice::GenericDSATDevice(std::vector<std::string> args) {
+GenericDSATDevice::GenericDSATDevice(std::vector<std::string> args) 
+    : CommandList<GenericDSATDevice>("GenericDSAT")
+{
     /*
      * Allocate the pointers and register the commands in the constructor.
      */

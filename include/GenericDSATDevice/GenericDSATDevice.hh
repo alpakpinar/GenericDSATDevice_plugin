@@ -36,7 +36,7 @@ namespace BUTool {
             "a",
             "GenericDSAT",
             "Connection file for creating a DSAT-based device"
-            );
+            )
 
 }
 
