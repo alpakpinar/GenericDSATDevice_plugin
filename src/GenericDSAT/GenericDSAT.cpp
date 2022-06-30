@@ -110,9 +110,9 @@ std::string GenericDSAT::GetRegMode(std::string const & reg) {
     std::string permission = "";
 
     std::unordered_map<std::string, int> permissionMap;
-    permissionMap["r"] = 1
-    permissionMap["w"] = 2
-    permissionMap["a"] = 4
+    permissionMap["r"] = 1;
+    permissionMap["w"] = 2;
+    permissionMap["a"] = 4;
 
     for (auto item : permissionMap) {
         if ((mode & item.second) == 1) {

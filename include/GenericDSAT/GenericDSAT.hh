@@ -4,6 +4,7 @@
 // Includes from BUTool
 #include "RegisterHelper/RegisterHelperIO.hh"
 #include "StatusDisplay/StatusDisplay.hh"
+#include "BUTool/ToolException.hh"
 
 // Includes from DSAT sub-module
 #include "AddressTable.hh"
