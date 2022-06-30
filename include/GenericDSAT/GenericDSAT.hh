@@ -10,8 +10,6 @@
 
 #include "GenericDSAT/Exceptions.hh"
 
-#include <boost/unordered_map.hpp>
-
 #include <iostream>
 #include <vector>
 #include <string>
@@ -31,7 +29,7 @@ class GenericDSAT : public BUTool::RegisterHelperIO {
         GenericDSAT(std::string addrTablePath);
         ~GenericDSAT();
 
-        typedef boost::unordered_map<std::string,std::string> strStrMap;
+        typedef std::unordered_map<std::string, std::string> uMap;
 
         // Register name search
         std::vector<std::string> GetRegsRegex(std::string regex);
@@ -54,6 +52,9 @@ class GenericDSAT : public BUTool::RegisterHelperIO {
         std::string GetRegMode        (std::string const & reg);
         std::string GetRegPermissions (std::string const & reg);
         std::string GetRegDescription (std::string const & reg);
+
+        std::string   GetRegParameterValue(std::string const & reg, std::string const & name);
+        const uMap &  GetParameters       (std::string const & reg);
 
         void GenerateStatusDisplay(size_t level,
             std::ostream & stream,

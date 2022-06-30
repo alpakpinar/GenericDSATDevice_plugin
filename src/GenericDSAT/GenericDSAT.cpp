@@ -127,11 +127,32 @@ std::string GenericDSAT::GetRegPermissions(std::string const & reg) {
 }
 
 std::string GenericDSAT::GetRegDescription(std::string const & reg) {
-    strStrMap userParams = addressTable->GetItem(reg)->user;
+    uMap userParams = addressTable->GetItem(reg)->user;
     if (userParams.find("description") != userParams.end()) {
         return userParams["description"];
     }
     return "";
+}
+
+std::string GenericDSAT::GetRegParameterValue(std::string const & reg, std::string const & name) {
+    uMap userParams = addressTable->GetItem(reg)->user;
+    auto iterator = userParams.find(name);
+
+    // Handle the case where we can't find such a parameter
+    if (iterator == userParams.end()) {
+        BUException::BAD_VALUE e;
+        e.Append("Register: ");
+        e.Append(reg);
+        e.Append(" Parameter not found: ");
+        e.Append(name);
+        e.Append("\n");
+        throw e;
+    }
+    return iterator->second;
+}
+
+const uMap & GenericDSAT::GetParameters(std::string const & reg) {
+    return addressTable->GetItem(reg)->user;
 }
 
 void GenericDSAT::GenerateStatusDisplay(size_t level,
