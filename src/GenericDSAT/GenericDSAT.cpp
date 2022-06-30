@@ -79,7 +79,21 @@ uint32_t GenericDSAT::GetRegMask(std::string const & reg) {
 }
 
 uint32_t GenericDSAT::GetRegSize(std::string const & reg) {
-    return 0;
+    uint32_t mask = GetRegMask(reg);
+    
+    // To get the size of the register, shift the bit-values to right
+    // until we get a 1 in the least significant place.
+    uint32_t bitShiftCount = 0;
+
+    // By default, assume 32-bits for the register
+    uint32_t defaultRegSize = 32;
+
+    while ((mask & 0x1) == 0) {
+        mask = mask >> 1;
+        bitShiftCount += 1;
+    }
+
+    return defaultRegSize - bitShiftCount;
 }
 
 std::string GenericDSAT::GetRegMode(std::string const & reg) {
