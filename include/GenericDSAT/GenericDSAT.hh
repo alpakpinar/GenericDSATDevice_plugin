@@ -32,20 +32,20 @@ class GenericDSAT : public BUTool::RegisterHelperIO {
     typedef boost::unordered_map<std::string,std::string> strStrMap;
 
     // Reads by array index and register name
-    virtual uint32_t    ReadAddress (uint32_t addr);
-    virtual uint32_t    ReadRegister(std::string const & reg);
+    uint32_t    ReadAddress (uint32_t addr);
+    uint32_t    ReadRegister(std::string const & reg);
 
     // Writes by array index and register name
-    virtual void        WriteAddress (uint32_t addr, uint32_t data);
-    virtual void        WriteRegister(std::string const & reg, uint32_t data);
+    void        WriteAddress (uint32_t addr, uint32_t data);
+    void        WriteRegister(std::string const & reg, uint32_t data);
 
     // Lookups by name
-    virtual uint32_t    GetRegAddress     (std::string const & reg);
-    virtual uint32_t    GetRegMask        (std::string const & reg);
-    virtual uint32_t    GetRegSize        (std::string const & reg);
-    virtual std::string GetRegMode        (std::string const & reg);
-    virtual std::string GetRegPermissions (std::string const & reg);
-    virtual std::string GetRegDescription (std::string const & reg);
+    uint32_t    GetRegAddress     (std::string const & reg);
+    uint32_t    GetRegMask        (std::string const & reg);
+    uint32_t    GetRegSize        (std::string const & reg);
+    std::string GetRegMode        (std::string const & reg);
+    std::string GetRegPermissions (std::string const & reg);
+    std::string GetRegDescription (std::string const & reg);
 
     void GenerateStatusDisplay(size_t level,
            std::ostream & stream,
