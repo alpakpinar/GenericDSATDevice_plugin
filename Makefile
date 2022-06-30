@@ -39,7 +39,8 @@ LIBRARY_PATH = $(patsubst %,-L%,$(abspath ${RELATIVE_LIBRARY_PATH}))
 LIBRARIES = 	-lToolException     \
 				-lBUTool_BUTextIO   \
 				-lBUTool            \
-				-lBUTool_Helpers    
+				-lBUTool_Helpers    \
+				-ldsat    
 
 CXX_FLAGS = -g -O3 -rdynamic -Wall -MMD -MP -fPIC ${INCLUDE_PATH} -Werror -Wno-literal-suffix
 
@@ -66,13 +67,13 @@ else
 	$(error You must define BUTOOL_PATH through the command line (or as an env variable)!)
 endif
 
-self: butool_env ${LIBRARY_DSAT_DEVICE} ${LIBRARY_DSAT}
+self: butool_env ${LIBRARY_DSAT} ${LIBRARY_DSAT_DEVICE}
 
 # -------------------
 # The .so libraries
 # -------------------
 ${LIBRARY_DSAT_DEVICE}: ${LIBRARY_DSAT_DEVICE_OBJECT_FILES} ${LIBRARY_DSAT} 
-	${CXX} ${LINK_LIBRARY_FLAGS} ${LIBRARY_DSAT_DEVICE_OBJECT_FILES} -o $@
+	${CXX} ${LINK_LIBRARY_FLAGS} -lDSAT_GenericDSAT ${LIBRARY_DSAT_DEVICE_OBJECT_FILES} -o $@
 
 ${LIBRARY_DSAT}: ${LIBRARY_DSAT_OBJECT_FILES}
 	${CXX} ${LINK_LIBRARY_FLAGS} ${LIBRARY_DSAT_OBJECT_FILES} -o $@
