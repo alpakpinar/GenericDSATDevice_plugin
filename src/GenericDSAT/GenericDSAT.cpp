@@ -105,6 +105,7 @@ std::string GenericDSAT::GetRegMode(std::string const & reg) {
     uint8_t mode = addressTable->GetItem(reg)->mode;
     switch(mode) {
         case 0:
+        default:
             return "r";
         case 1:
             return "w";
@@ -122,7 +123,7 @@ std::string GenericDSAT::GetRegPermissions(std::string const & reg) {
 std::string GenericDSAT::GetRegDescription(std::string const & reg) {
     strStrMap userParams = addressTable->GetItem(reg)->user;
     if (userParams.find("description") != userParams.end()) {
-        return userParams.find("description");
+        return userParams["description"];
     }
     return "";
 }
