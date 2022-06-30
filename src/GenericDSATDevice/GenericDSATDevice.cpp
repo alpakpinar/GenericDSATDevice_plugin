@@ -5,8 +5,7 @@ using namespace BUTool;
 GenericDSATDevice::GenericDSATDevice(std::vector<std::string> args) 
     : CommandList<GenericDSATDevice>("GenericDSAT"),
       GenericDSATHolder(args),
-      RegisterHelper(std::static_pointer_cast<RegisterHelperIO>(genericDSATPtr),
-        BUTool::CommandListBase::TextIO)
+      RegisterHelper(std::static_pointer_cast<RegisterHelperIO>(genericDSATPtr), TextIO)
 {
     // Register device-specific commands to BUTool
     AddCommands();

@@ -30,6 +30,7 @@ namespace BUTool {
             public RegisterHelper {
 
         public:
+            typedef BUTool::CommandListBase::TextIO TextIO;
             GenericDSATDevice(std::vector<std::string> args);
             ~GenericDSATDevice();
         
