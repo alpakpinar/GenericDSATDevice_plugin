@@ -1,0 +1,10 @@
+TEST.SCRATCH.WORD_00      0x0       0xFFFFFFFF       rw
+TEST.SCRATCH.WORD_01      0x1       0xFFFFFFFF       rw
+TEST.SCRATCH.WORD_02      0x2       0xFFFFFFFF       rw
+TEST.SCRATCH.WORD_03      0x3       0xFFFFFFFF       rw
+TEST.SCRATCH.WORD_04      0x4       0xFFFFFFFF       rw
+TEST.SCRATCH.WORD_05      0x5       0xFFFFFFFF       rw
+
+TEST.SCRATCH.WORD_10      0x10      0xFFFFFFFF       rw    Table="TEST" Row="_2"  Column="_3"  Status="1"
+TEST.SCRATCH.WORD_20      0x20      0xFFFFFFFF       rw    Table="TEST" Row="_2"  Column="_3"  Status="1"
+TEST.SCRATCH.WORD_30      0x30      0xFFFFFFFF       rw    Table="TEST" Row="_2"  Column="_3"  Status="1"
