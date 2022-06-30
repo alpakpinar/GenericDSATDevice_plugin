@@ -20,6 +20,8 @@
 // Number of registers in the address table, hard code it for now.
 #define N_REGISTERS 1000
 
+typedef std::unordered_map<std::string, std::string> strStrMap;
+
 /*
  * Simple class that supports reads and writes on DSAT-based address tables.
  * Stores registers in an array of 32-bit unsigned integers.
@@ -29,8 +31,6 @@ class GenericDSAT : public BUTool::RegisterHelperIO {
     public:
         GenericDSAT(std::string addrTablePath);
         ~GenericDSAT();
-
-        typedef std::unordered_map<std::string, std::string> uMap;
 
         // Register name search
         std::vector<std::string> GetRegsRegex(std::string regex);
@@ -55,7 +55,7 @@ class GenericDSAT : public BUTool::RegisterHelperIO {
         std::string GetRegDescription (std::string const & reg);
 
         std::string   GetRegParameterValue(std::string const & reg, std::string const & name);
-        const uMap &  GetRegParameters    (std::string const & reg);
+        const strStrMap &  GetRegParameters    (std::string const & reg);
 
         void GenerateStatusDisplay(size_t level,
             std::ostream & stream,

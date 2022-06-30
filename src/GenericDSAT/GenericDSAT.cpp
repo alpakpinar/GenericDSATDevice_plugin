@@ -127,7 +127,7 @@ std::string GenericDSAT::GetRegPermissions(std::string const & reg) {
 }
 
 std::string GenericDSAT::GetRegDescription(std::string const & reg) {
-    uMap userParams = addressTable->GetItem(reg)->user;
+    strStrMap userParams = addressTable->GetItem(reg)->user;
     if (userParams.find("description") != userParams.end()) {
         return userParams["description"];
     }
@@ -135,7 +135,7 @@ std::string GenericDSAT::GetRegDescription(std::string const & reg) {
 }
 
 std::string GenericDSAT::GetRegParameterValue(std::string const & reg, std::string const & name) {
-    uMap userParams = addressTable->GetItem(reg)->user;
+    strStrMap userParams = addressTable->GetItem(reg)->user;
     auto iterator = userParams.find(name);
 
     // Handle the case where we can't find such a parameter
@@ -151,7 +151,7 @@ std::string GenericDSAT::GetRegParameterValue(std::string const & reg, std::stri
     return iterator->second;
 }
 
-const uMap & GenericDSAT::GetRegParameters(std::string const & reg) {
+const strStrMap & GenericDSAT::GetRegParameters(std::string const & reg) {
     return addressTable->GetItem(reg)->user;
 }
 
