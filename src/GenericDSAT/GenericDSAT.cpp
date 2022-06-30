@@ -151,7 +151,7 @@ std::string GenericDSAT::GetRegParameterValue(std::string const & reg, std::stri
     return iterator->second;
 }
 
-const uMap & GenericDSAT::GetParameters(std::string const & reg) {
+const uMap & GenericDSAT::GetRegParameters(std::string const & reg) {
     return addressTable->GetItem(reg)->user;
 }
 

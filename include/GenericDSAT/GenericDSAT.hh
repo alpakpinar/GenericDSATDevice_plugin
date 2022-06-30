@@ -55,7 +55,7 @@ class GenericDSAT : public BUTool::RegisterHelperIO {
         std::string GetRegDescription (std::string const & reg);
 
         std::string   GetRegParameterValue(std::string const & reg, std::string const & name);
-        const uMap &  GetParameters       (std::string const & reg);
+        const uMap &  GetRegParameters    (std::string const & reg);
 
         void GenerateStatusDisplay(size_t level,
             std::ostream & stream,
