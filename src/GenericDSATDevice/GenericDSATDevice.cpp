@@ -3,32 +3,24 @@
 using namespace BUTool;
 
 GenericDSATDevice::GenericDSATDevice(std::vector<std::string> args) 
-    : CommandList<GenericDSATDevice>("GenericDSAT")
+    : CommandList<GenericDSATDevice>("GenericDSAT"),
+      GenericDSATHolder(args),
+      RegisterHelper(std::static_pointer_cast<RegisterHelperIO>(genericDSATPtr),
+        BUTool::CommandListBase::TextIO)
 {
-    /*
-     * Allocate the pointers and register the commands in the constructor.
-     */
-    std::string addrTablePath = args[0];
-    genericDSATPtr = new GenericDSAT(addrTablePath);
-    textIO = new BUTextIO();
-
     // Register device-specific commands to BUTool
     AddCommands();
 }
 
 GenericDSATDevice::~GenericDSATDevice() {
-    /*
-     * De-allocate the pointers in the destructor.
-     */
-    if (genericDSATPtr != NULL) {
-        delete genericDSATPtr;
-    }
-    if (textIO != NULL) {
-        delete textIO;
-    }
 }
 
 void GenericDSATDevice::AddCommands() {
+    /*
+     * Register commands for this device to BUTool interface.
+     * "read" and "write" commands are inherited from BUTool::RegisterHelper,
+     * and the "status" command is implemented via StatusDisplay function in this class.
+     */
     AddCommand("read",&GenericDSATDevice::Read,
 	     "Read from GenericDSAT\n"          \
 	     "Usage: \n"                     \
@@ -81,7 +73,7 @@ CommandReturn::status GenericDSATDevice::StatusDisplay(std::vector<std::string> 
     genericDSATPtr->GenerateStatusDisplay(statusLevel, oss, tableName);
     
     // Print the resulting output stream and return
-    textIO->Print(Level::INFO, "%s", oss.str().c_str());
+    TextIO->Print(Level::INFO, "%s", oss.str().c_str());
     return CommandReturn::OK;
     
 }

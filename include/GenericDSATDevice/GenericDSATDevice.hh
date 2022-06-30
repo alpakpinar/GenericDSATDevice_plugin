@@ -10,18 +10,30 @@
 #include "GenericDSAT/GenericDSAT.hh"
 
 namespace BUTool {
+    /*
+     * This class holds a smart pointer to GenericDSAT class instance
+     * that is used by the inheriting class GenericDSATDevice
+     */
+    class GenericDSATHolder {
+    public:
+        GenericDSATHolder(std::vector<std::string> const & args) {
+            genericDSATPtr = std::make_shared<GenericDSAT>(args[0]);
+        }
+    protected:
+        std::shared_ptr<GenericDSAT> genericDSATPtr;
+    private:
+        GenericDSATHolder();
+    };
+
     class GenericDSATDevice: public CommandList<GenericDSATDevice>,
-                public RegisterHelper {
+            public GenericDSATHolder,
+            public RegisterHelper {
 
         public:
             GenericDSATDevice(std::vector<std::string> args);
             ~GenericDSATDevice();
         
         private:
-            // Pointer to GenericDSAT instance for underlying operations
-            GenericDSAT* genericDSATPtr;
-            BUTextIO* textIO;
-
             // Function to register commands for the GenericDSATDevice class
             void AddCommands();
 
