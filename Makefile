@@ -19,14 +19,16 @@ DSAT_LIBRARY_DIR = dsat/
 # Set up include paths for compiler
 RELATIVE_INCLUDE_PATH = \
 	include \
-	${DSAT_PATH}/include
+	${DSAT_PATH}/include \
+	${BUTOOL_PATH}/include
 
 INCLUDE_PATH = $(patsubst %,-I%,$(abspath ${RELATIVE_INCLUDE_PATH}))
 
 # Library paths for linker
 RELATIVE_LIBRARY_PATH = \
 			lib \
-			${DSAT_PATH}/lib 
+			${DSAT_PATH}/lib   \
+			${BUTOOL_PATH}/lib 
 
 LIBRARY_PATH = $(patsubst %,-L%,$(abspath ${RELATIVE_LIBRARY_PATH}))
 
@@ -53,7 +55,14 @@ all: _all
 build: _all
 _all: self
 
-self: ${LIBRARY_DSAT_DEVICE} ${LIBRARY_DSAT}
+butool_env:
+ifdef BUTOOL_PATH
+	$(info using BUTool lib from user defined BUTOOL_PATH=${BUTOOL_PATH})
+else
+	$(error Must define BUTOOL_PATH through the command line!)
+endif
+
+self: butool_env ${LIBRARY_DSAT_DEVICE} ${LIBRARY_DSAT}
 
 # -------------------
 # The .so libraries
@@ -64,7 +73,8 @@ ${LIBRARY_DSAT_DEVICE}: ${LIBRARY_DSAT_DEVICE_OBJECT_FILES} ${LIBRARY_DSAT}
 ${LIBRARY_DSAT}: ${LIBRARY_DSAT_OBJECT_FILES}
 	${CXX} ${LINK_LIBRARY_FLAGS} ${LIBRARY_DSAT_OBJECT_FILES} -o $@
 
-obj/%.o : src/%.cc
+# Rule to make object files
+obj/%.o : src/%.cpp
 	mkdir -p $(dir $@)
 	mkdir -p {lib,obj}
 	${CXX} ${CXX_FLAGS} -c $< -o $@
