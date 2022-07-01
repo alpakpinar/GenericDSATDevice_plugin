@@ -10,7 +10,7 @@ more examples of address tables in DSAT-format.
 
 ### Building the Code
 
-**Note:** Since this plugin has dependencies to `BUTool`, these instructions assume that `BUTool` is built and installed under the path `BUTOOL_PATH`. 
+**Note:** Since this plugin has dependencies to `BUTool`, these instructions assume that `BUTool` is built and installed under the path `/path/to/BUTool`. 
 
 For building the project, the following steps must be taken:
 
@@ -30,11 +30,11 @@ make
 
 # Build the plugin
 cd ../
-source env.sh /path/to/BUTool/install
+source env.sh /path/to/BUTool
 make
 ```
 
-To remove all build products, you can execute `make clean`.
+Before building, make sure that `BUTOOL_PATH` environment variable is properly set to your BUTool install path, `/path/to/BUTool` after sourcing the `env.sh` script. To remove all build products, you can execute `make clean`.
 
 ### Running the Code with BUTool
 
