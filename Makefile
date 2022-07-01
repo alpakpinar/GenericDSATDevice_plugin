@@ -13,9 +13,6 @@ LIBRARY_DSAT_DEVICE = lib/libDSAT_GenericDSATDevice.so
 LIBRARY_DSAT_DEVICE_SOURCES = $(wildcard src/GenericDSATDevice/*.cpp)
 LIBRARY_DSAT_DEVICE_OBJECT_FILES = $(patsubst src/%.cpp,obj/%.o,${LIBRARY_DSAT_DEVICE_SOURCES})
 
-# Path to DSAT submodule
-DSAT_LIBRARY_DIR = dsat/
-
 BUEXCEPTION_PATH=${BUTOOL_PATH}/external/BUException
 
 # Set up include paths for compiler
@@ -54,7 +51,7 @@ _cleanall:
 	rm -rf obj
 	rm -rf bin
 	rm -rf lib
-	make -C ${DSAT_LIBRARY_DIR} clean
+	make -C ${DSAT_PATH} clean
 
 all: _all
 build: _all
@@ -88,4 +85,4 @@ obj/%.o : src/%.cpp
 # The DSAT library
 # ------------------
 dsat:
-	make -C ${DSAT_LIBRARY_DIR}
+	make -C ${DSAT_PATH}
