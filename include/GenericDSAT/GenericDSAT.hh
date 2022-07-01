@@ -60,7 +60,7 @@ class GenericDSAT : public BUTool::RegisterHelperIO {
 
     private:
         // Member data
-        uint32_t* values;
+        std::vector<uint32_t> values;
         AddressTable* addressTable;
     
         // StatusDisplay class instance to use to interact with BUTool's status command

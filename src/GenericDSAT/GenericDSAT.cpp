@@ -15,10 +15,8 @@ GenericDSAT::GenericDSAT(std::string addrTablePath)
     size_t maxAddress = addressTable->GetMaxAddress();
     std::cout << "Allocating an array with maximum index: " << maxAddress << std::endl;
 
-    size_t numBytes = sizeof(uint32_t) * maxAddress;
-
-    values = malloc(numBytes);
-    memset(values, 0, numBytes);
+    values.resize(maxAddress);
+    std::fill(values.begin(), values.end(), 0);
 }
 
 GenericDSAT::~GenericDSAT() {
@@ -39,8 +37,7 @@ std::vector<std::string> GenericDSAT::GetRegsRegex(std::string regex) {
 
 uint32_t GenericDSAT::ReadAddress(uint32_t addr) {
     // Check that the address is within the array range
-    size_t arraySize = sizeof(values) / sizeof(uint32_t);
-    if (addr > arraySize) {
+    if (addr > values.size()) {
         BUException::INVALID_ADDRESS e;
         e.Append("Address value out of range: ");
 
@@ -61,8 +58,7 @@ uint32_t GenericDSAT::ReadRegister(std::string const & reg) {
 }
 
 void GenericDSAT::WriteAddress(uint32_t addr, uint32_t data) {
-    size_t arraySize = sizeof(values) / sizeof(uint32_t);
-    if (addr > arraySize) {
+    if (addr > values.size()) {
         BUException::INVALID_ADDRESS e;
         e.Append("Address value out of range: ");
 
