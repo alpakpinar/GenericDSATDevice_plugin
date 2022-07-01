@@ -97,7 +97,7 @@ void GenericDSAT::WriteAction(std::string const & reg) {
      */
     uint32_t dummyValue = 0;
     uint16_t address = addressTable->GetItem(reg)->address;
-    values[address] = dummyValue;
+    WriteAddress(address, dummyValue);
 }
 
 /*
