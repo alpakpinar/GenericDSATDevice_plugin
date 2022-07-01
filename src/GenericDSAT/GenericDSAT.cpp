@@ -13,9 +13,12 @@ GenericDSAT::GenericDSAT(std::string addrTablePath)
     // Using the API from DSAT, figure out the maximum address in the address table
     // We'll allocate an array of zeros with that many elements via memset
     size_t maxAddress = addressTable->GetMaxAddress();
-    std::cout << "Initializing an array of size: " << maxAddress << std::endl;
-    values = new uint32_t[maxAddress];
-    memset(values, 0, maxAddress);
+    std::cout << "Allocating an array with maximum index: " << maxAddress << std::endl;
+
+    size_t numBytes = sizeof(uint32_t) * maxAddress;
+
+    values = malloc(numBytes);
+    memset(values, 0, numBytes);
 }
 
 GenericDSAT::~GenericDSAT() {
@@ -23,7 +26,7 @@ GenericDSAT::~GenericDSAT() {
         delete addressTable;
     }
     if (values != NULL) {
-        delete values;
+        free(values);
     }
 }
 
