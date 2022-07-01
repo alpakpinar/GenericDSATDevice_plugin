@@ -23,9 +23,6 @@ GenericDSAT::~GenericDSAT() {
     if (addressTable != NULL) {
         delete addressTable;
     }
-    if (values != NULL) {
-        free(values);
-    }
 }
 
 std::vector<std::string> GenericDSAT::GetRegsRegex(std::string regex) {
