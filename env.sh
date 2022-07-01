@@ -1,6 +1,6 @@
 main () {
     # Path to BUTool must be specified from the command line
-    if [ $# -eq 0 ]; then
+    if [ -z ${1} ]; then
         echo "Please provide the path to BUTool via command line, exiting."
         return
     fi
@@ -15,4 +15,5 @@ main () {
     export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${DSAT_LIB_DIR}:${PLUGIN_LIB_DIR}
 }
 
-main
+BUTOOL_PATH=${1}
+main ${BUTOOL_PATH}
