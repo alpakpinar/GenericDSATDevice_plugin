@@ -15,8 +15,8 @@ more examples of address tables in DSAT-format.
 For building the project, the following steps must be taken:
 
 - Clone the repository recursively, together with the `DSAT` sub-module
-- Build the `DSAT` submodule
-- Source the `env.sh` script with the correct `BUTOOL_PATH` and make the DSAT-device plugin
+- Source the `env.sh` script, providing the path to your BUTool install as a command line argument
+- Build the `DSAT` library and the device plugin together
 
 The following commands illustrate the process:
 
@@ -24,13 +24,10 @@ The following commands illustrate the process:
 # Note: If you don't have SSH keys set up, you might want to use a different GitHub Auth 
 git clone --recursive git@github.com:alpakpinar/GenericDSATDevice_plugin.git
 
-# Build the DSAT sub-module
-cd dsat/
-make
-
-# Build the plugin
-cd ../
+# This will set the BUTOOL_PATH environment variable to be /path/to/BUTool
 source env.sh /path/to/BUTool
+
+# Build the DSAT library and the plugin
 make
 ```
 
