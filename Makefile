@@ -46,6 +46,8 @@ CXX_FLAGS += -std=c++11 -fno-omit-frame-pointer -pedantic -Wno-ignored-qualifier
 LINK_LIBRARY_FLAGS = -shared -fPIC -Wall -g -O3 -rdynamic ${LIBRARY_PATH} ${LIBRARIES} \
 			-Wl,-rpath=$(RUNTIME_LDPATH)/lib
 
+.PHONY: all _all clean _cleanall build self dsatlib
+
 clean: _cleanall
 _cleanall:
 	rm -rf obj
@@ -55,7 +57,7 @@ _cleanall:
 
 all: _all
 build: _all
-_all: dsat self
+_all: dsatlib self
 
 butool_env:
 ifdef BUTOOL_PATH
@@ -84,5 +86,5 @@ obj/%.o : src/%.cpp
 # ------------------
 # The DSAT library
 # ------------------
-dsat:
+dsatlib:
 	make -C ${DSAT_PATH}
