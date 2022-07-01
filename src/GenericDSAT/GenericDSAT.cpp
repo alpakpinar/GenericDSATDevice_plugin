@@ -5,13 +5,13 @@ GenericDSAT::GenericDSAT(std::string addrTablePath)
       statusDisplay((BUTool::RegisterHelperIO*)this)
 {
     /*
-     * Allocate an AddressTable with the given path to get addresses and items.
+     * Allocate an AddressTable with the given path to get registers and their addresses.
      * Also set up the array and the StatusDisplay object.
      */
     addressTable = new AddressTable(addrTablePath);
 
     // Using the API from DSAT, figure out the maximum address in the address table
-    // We'll allocate an array of zeros with that many elements via memset
+    // We'll allocate an array of zeros with that many elements
     size_t maxAddress = addressTable->GetMaxAddress();
     std::cout << "Allocating an array with maximum index: " << maxAddress << std::endl;
 
@@ -20,6 +20,9 @@ GenericDSAT::GenericDSAT(std::string addrTablePath)
 }
 
 GenericDSAT::~GenericDSAT() {
+    /*
+     * De-allocate the memory for the AddressTable instance.
+     */
     if (addressTable != NULL) {
         delete addressTable;
     }
@@ -33,7 +36,10 @@ std::vector<std::string> GenericDSAT::GetRegsRegex(std::string regex) {
 }
 
 uint32_t GenericDSAT::ReadAddress(uint32_t addr) {
-    // Check that the address is within the array range
+    /*
+     * Reads a 32-bit unsigned integer from the given address, via an array lookup.
+     * Will throw an INVALID_ADDRESS exception if the address is outside of the array bounds.
+     */
     if (addr > values.size()) {
         BUException::INVALID_ADDRESS e;
         e.Append("Address value out of range: ");
@@ -49,12 +55,19 @@ uint32_t GenericDSAT::ReadAddress(uint32_t addr) {
 }
 
 uint32_t GenericDSAT::ReadRegister(std::string const & reg) {
-    // Retrieve the address for the register name, from the address table
+    /*
+     * Reads a register with a given name. Uses the DSAT library
+     * to figure out the address for a register.
+     */
     uint16_t address = addressTable->GetItem(reg)->address;
     return ReadAddress(address);
 }
 
 void GenericDSAT::WriteAddress(uint32_t addr, uint32_t data) {
+    /*
+     * Writes a 32-bit unsigned integer to the specified address.
+     * Will throw an INVALID_ADDRESS exception if the address is outside of the array bounds.
+     */
     if (addr > values.size()) {
         BUException::INVALID_ADDRESS e;
         e.Append("Address value out of range: ");
@@ -70,8 +83,12 @@ void GenericDSAT::WriteAddress(uint32_t addr, uint32_t data) {
 }
 
 void GenericDSAT::WriteRegister(std::string const & reg, uint32_t data) {
+    /*
+     * Writes a 32-bit unsigned integer to the specified register (by name).
+     * Uses the DSAT library to figure out the address for a register.
+     */
     uint16_t address = addressTable->GetItem(reg)->address;
-    values[address] = data;
+    WriteAddress(address, data);
 }
 
 void GenericDSAT::WriteAction(std::string const & reg) {
@@ -83,6 +100,9 @@ void GenericDSAT::WriteAction(std::string const & reg) {
     values[address] = dummyValue;
 }
 
+/*
+ * Getter methods for the register specified via it's name
+ */
 uint32_t GenericDSAT::GetRegAddress(std::string const & reg) {
     return addressTable->GetItem(reg)->address;
 }
@@ -167,6 +187,12 @@ void GenericDSAT::GenerateStatusDisplay(size_t level,
            std::ostream & stream = std::cout,
            std::string const & singleTable = std::string("")) {
 
+    /*
+     * The function to be called when "status" is executed from the BUTool CLI.
+     *
+     * Using an instance of the BUTool::StatusDisplay object, the function will print
+     * status tables as defined by the address table (registered in the constructor).
+     */
     statusDisplay.Clear();
     statusDisplay.Report(level,stream,singleTable);
     statusDisplay.Clear();
