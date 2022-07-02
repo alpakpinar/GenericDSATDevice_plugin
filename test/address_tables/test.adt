@@ -1,10 +1,46 @@
-TEST.SCRATCH.WORD_00      0x0       0xFFFFFFFF       rw
-TEST.SCRATCH.WORD_01      0x1       0xFFFFFFFF       rw
-TEST.SCRATCH.WORD_02      0x2       0xFFFFFFFF       rw
-TEST.SCRATCH.WORD_03      0x3       0xFFFFFFFF       rw
-TEST.SCRATCH.WORD_04      0x4       0xFFFFFFFF       rw
-TEST.SCRATCH.WORD_05      0x5       0xFFFFFFFF       rw
+TEST_1.SCRATCH.WORD_00      0x0       0xFFFFFFFF       rw    Table="TEST_1" Row="_3" Column="_2" Status="1" Format="fp16"
+TEST_1.SCRATCH.WORD_01      0x1       0xFFFFFFFF       rw    Table="TEST_1" Row="_3" Column="_2" Status="1" Format="fp16" 
+TEST_1.SCRATCH.WORD_02      0x2       0xFFFFFFFF       rw    Table="TEST_1" Row="_3" Column="_2" Status="1" Format="fp16"
+TEST_1.SCRATCH.WORD_03      0x3       0xFFFFFFFF       rw    Table="TEST_1" Row="_3" Column="_2" Status="1" Format="fp16"
+TEST_1.SCRATCH.WORD_04      0x4       0xFFFFFFFF       rw    Table="TEST_1" Row="_3" Column="_2" Status="1" Format="fp16"
+TEST_1.SCRATCH.WORD_05      0x5       0xFFFFFFFF       rw    Table="TEST_1" Row="_3" Column="_2" Status="1" Format="fp16"
 
-TEST.SCRATCH.WORD_10      0x10      0xFFFFFFFF       rw    Table="TEST" Row="_2"  Column="_3"  Status="1"
-TEST.SCRATCH.WORD_20      0x20      0xFFFFFFFF       rw    Table="TEST" Row="_2"  Column="_3"  Status="1"
-TEST.SCRATCH.WORD_30      0x30      0xFFFFFFFF       rw    Table="TEST" Row="_2"  Column="_3"  Status="1"
+TEST_2.SCRATCH.BLOCK_1.WORD_00      0x10      0xFFFFFFFF       rw    Table="TEST_2" Row="_3"  Column="_4"  Status="1"  Format="u"
+TEST_2.SCRATCH.BLOCK_1.WORD_01      0x11      0xFFFFFFFF       rw    Table="TEST_2" Row="_3"  Column="_4"  Status="1"  Format="d"
+TEST_2.SCRATCH.BLOCK_1.WORD_02      0x12      0xFFFFFFFF       rw    Table="TEST_2" Row="_3"  Column="_4"  Status="1"  Format="fp16"
+TEST_2.SCRATCH.BLOCK_2.WORD_00      0x20      0xFFFFFFFF       rw    Table="TEST_2" Row="_3"  Column="_4"  Status="1"  Format="u"
+TEST_2.SCRATCH.BLOCK_2.WORD_01      0x21      0xFFFFFFFF       rw    Table="TEST_2" Row="_3"  Column="_4"  Status="1"  Format="d"
+TEST_2.SCRATCH.BLOCK_2.WORD_02      0x22      0xFFFFFFFF       rw    Table="TEST_2" Row="_3"  Column="_4"  Status="1"  Format="fp16"
+TEST_2.SCRATCH.BLOCK_3.WORD_00      0x30      0xFFFFFFFF       rw    Table="TEST_2" Row="_3"  Column="_4"  Status="1"  Format="u"
+TEST_2.SCRATCH.BLOCK_3.WORD_01      0x31      0xFFFFFFFF       rw    Table="TEST_2" Row="_3"  Column="_4"  Status="1"  Format="d"
+TEST_2.SCRATCH.BLOCK_3.WORD_02      0x32      0xFFFFFFFF       rw    Table="TEST_2" Row="_3"  Column="_4"  Status="1"  Format="fp16"
+
+TEST_3.SCRATCH.WORD_00         0x40      0xFFFFFFFF       rw    Table="TEST_3" Row="_3"  Column="_2"  Format="d"
+TEST_3.SCRATCH.WORD_01         0x41      0xFFFFFFFF       rw    Table="TEST_3" Row="_3"  Column="_2"  Format="d"
+TEST_3.SCRATCH.WORD_02         0x42      0xFFFFFFFF       rw    Table="TEST_3" Row="_3"  Column="_2"  Format="d"
+TEST_3.SCRATCH.WORD_03         0x43      0xFFFFFFFF       rw    Table="TEST_3" Row="_3"  Column="_2"  Format="d"
+TEST_3.DETAIL.WORD_00          0x50      0xFFFFFFFF       rw    Table="TEST_3" Row="_3"  Column="_2"  Format="d"  Status="3"
+TEST_3.DETAIL.WORD_01          0x51      0xFFFFFFFF       rw    Table="TEST_3" Row="_3"  Column="_2"  Format="d"  Status="3"
+TEST_3.DETAIL.WORD_02          0x52      0xFFFFFFFF       rw    Table="TEST_3" Row="_3"  Column="_2"  Format="d"  Status="3"
+TEST_3.DETAIL.WORD_03          0x53      0xFFFFFFFF       rw    Table="TEST_3" Row="_3"  Column="_2"  Format="d"  Status="3"
+
+TEST_4.SHOW_NONZERO.WORD_00    0x60      0xFFFFFFFF       rw    Table="TEST_4" Row="_3"  Column="_2"  Format="d"  Show="nz"
+TEST_4.SHOW_NONZERO.WORD_01    0x61      0xFFFFFFFF       rw    Table="TEST_4" Row="_3"  Column="_2"  Format="d"  Show="nz"
+TEST_4.SHOW_NONZERO.WORD_02    0x62      0xFFFFFFFF       rw    Table="TEST_4" Row="_3"  Column="_2"  Format="d"  Show="nz"
+TEST_4.SHOW_NONZERO.WORD_03    0x63      0xFFFFFFFF       rw    Table="TEST_4" Row="_3"  Column="_2"  Format="d"  Show="nz"
+TEST_4.SHOW_ZERO.WORD_00       0x70      0xFFFFFFFF       rw    Table="TEST_4" Row="_3"  Column="_2"  Format="d"  Show="z"
+TEST_4.SHOW_ZERO.WORD_01       0x71      0xFFFFFFFF       rw    Table="TEST_4" Row="_3"  Column="_2"  Format="d"  Show="z"
+TEST_4.SHOW_ZERO.WORD_02       0x72      0xFFFFFFFF       rw    Table="TEST_4" Row="_3"  Column="_2"  Format="d"  Show="z"
+TEST_4.SHOW_ZERO.WORD_03       0x73      0xFFFFFFFF       rw    Table="TEST_4" Row="_3"  Column="_2"  Format="d"  Show="z"
+
+TEST_5.ENUM_1.WORD_00       0x80      0xFFFFFFFF       rw    Table="TEST_5" Row="_3"  Column="_2"  Format="t_0_ZERO_1_ONE_2_TWO"
+TEST_5.ENUM_1.WORD_01       0x81      0xFFFFFFFF       rw    Table="TEST_5" Row="_3"  Column="_2"  Format="t_0_ZERO_1_ONE_2_TWO"
+TEST_5.ENUM_2.WORD_00       0x85      0xFFFFFFFF       rw    Table="TEST_5" Row="_3"  Column="_2"  Format="T_0_ZERO_1_ONE_2_TWO"
+TEST_5.ENUM_2.WORD_01       0x86      0xFFFFFFFF       rw    Table="TEST_5" Row="_3"  Column="_2"  Format="T_0_ZERO_1_ONE_2_TWO"
+
+TEST_6.FLOATING_1.WORD_00       0x90      0xFFFFFFFF       rw    Table="TEST_6" Row="_3"  Column="_2"  Format="m_1_1_100_1_0_1"
+TEST_6.FLOATING_1.WORD_01       0x91      0xFFFFFFFF       rw    Table="TEST_6" Row="_3"  Column="_2"  Format="m_1_1_100_1_0_1"
+TEST_6.FLOATING_2.WORD_00       0x92      0xFFFFFFFF       rw    Table="TEST_6" Row="_3"  Column="_2"  Format="m_1_0_100_1_1_1"
+TEST_6.FLOATING_2.WORD_01       0x93      0xFFFFFFFF       rw    Table="TEST_6" Row="_3"  Column="_2"  Format="m_1_0_100_1_1_1"
+TEST_6.FLOATING_3.WORD_00       0x94      0xFFFFFFFF       rw    Table="TEST_6" Row="_3"  Column="_2"  Format="m_0_1_100_0_1_1"
+TEST_6.FLOATING_3.WORD_01       0x95      0xFFFFFFFF       rw    Table="TEST_6" Row="_3"  Column="_2"  Format="m_0_1_100_0_1_1"
