@@ -12,7 +12,7 @@ GenericDSAT::GenericDSAT(std::string addrTablePath)
 
     // Using the API from DSAT, figure out the maximum address in the address table
     // We'll allocate an array of zeros with that many elements
-    size_t maxAddress = addressTable->GetMaxAddress();
+    size_t maxAddress = 1000; 
     std::cout << "Allocating an array with maximum index: " << maxAddress << std::endl;
 
     values.resize(maxAddress);

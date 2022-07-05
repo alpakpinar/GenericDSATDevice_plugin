@@ -1,5 +1,6 @@
-add_lib ${LIB_DSAT_DEVICE}
-add_device GENERICDSAT ${ADDRESS_TABLE_PATH}
+# Add the device library and register the device
+add_lib @LIB_DSAT_DEVICE
+add_device GENERICDSAT @ADDRESS_TABLE_PATH
 
 write TEST_1.SCRATCH.WORD_00 1
 write TEST_1.SCRATCH.WORD_01 10
@@ -23,12 +24,23 @@ write TEST_5.ENUM_2.WORD_00 0
 write TEST_5.ENUM_2.WORD_01 1
 write TEST_5.ENUM_2.WORD_02 2
 
-# Test special 16-bit floating point values
-write TEST_6.FLOATING_1.WORD_00 0x3555
-write TEST_6.FLOATING_1.WORD_01 0x3bff
-write TEST_6.FLOATING_2.WORD_00 0x7c00
-write TEST_6.FLOATING_2.WORD_01 0xfc00
-write TEST_6.FLOATING_3.WORD_00 0xc000
-write TEST_6.FLOATING_3.WORD_01 0xfc00
+# Test the "m_" custom arithmetic format
+write TEST_6.FLOATING_1.WORD_00 100
+write TEST_6.FLOATING_1.WORD_01 10
+write TEST_6.FLOATING_2.WORD_00 100
+write TEST_6.FLOATING_2.WORD_01 10
+write TEST_6.FLOATING_3.WORD_00 100
+write TEST_6.FLOATING_2.WORD_01 10
 
+# Test special 16-bit floating point values
+write TEST_7.FP16.WORD_00 0x3555
+write TEST_7.FP16.WORD_01 0x3bff
+write TEST_7.FP16.WORD_02 0x7c00
+write TEST_7.FP16.WORD_03 0xfc00
+write TEST_7.FP16.WORD_04 0xc000
+write TEST_7.FP16.WORD_05 0x7bff
+
+# Generate status table and quit the program
 status
+
+quit
