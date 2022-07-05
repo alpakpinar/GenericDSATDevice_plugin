@@ -45,6 +45,14 @@ write TEST_7.FP16.WORD_03 0xfc00
 write TEST_7.FP16.WORD_04 0xc000
 write TEST_7.FP16.WORD_05 0x7bff
 
+# Test the _LO/_HI register value merging
+write TEST_8.MERGED_64BIT.WORD_00_LO 0x1
+write TEST_8.MERGED_64BIT.WORD_00_HI 0x1
+write TEST_8.MERGED_64BIT.WORD_01_LO 0x100
+write TEST_8.MERGED_64BIT.WORD_01_HI 0x100
+write TEST_8.MERGED_64BIT.WORD_02_LO 0x10000000
+write TEST_8.MERGED_64BIT.WORD_02_HI 0x10000000
+
 # Generate status table and quit the program
 status
 
