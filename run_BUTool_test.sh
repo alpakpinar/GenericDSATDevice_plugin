@@ -1,12 +1,10 @@
 #!/bin/bash
 
-# Path to BUTool must be specified as the first and only CL argument
-if [ $# -eq 0 ]; then
+# Path to BUTool must be specified as an environment variable (by sourcing env.sh) 
+if [ -z ${BUTOOL_PATH} ]; then
   echo "Please specify the path to BUTool, exiting"
   exit 1
 fi
-
-BUTOOL_PATH=$(realpath ${1})
 
 LIB_DSAT_DEVICE=$(realpath "lib/libDSAT_GenericDSATDevice.so")
 ADDRESS_TABLE_PATH=$(realpath "test/address_tables/test.adt")
