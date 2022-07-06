@@ -53,3 +53,6 @@ Registered device: GENERICDSAT
 
 And you're done! You can do reads and writes, or display status tables via `status` command in the BUTool CLI.
 
+### Running Automated Tests for BUTool
+
+This plugin can be used to run automated tests on `BUTool` software, to test the formatting of the `StatusDisplay` output. Check out the instructions [here](https://gitlab.com/BU-EDF/GenericDSATDevice_plugin/-/blob/develop/test/documentation/README.md) to get information on how that is done.
