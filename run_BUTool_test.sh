@@ -9,6 +9,9 @@ fi
 LIB_DSAT_DEVICE=$(realpath "lib/libDSAT_GenericDSATDevice.so")
 ADDRESS_TABLE_PATH=$(realpath "test/address_tables/test.adt")
 
+# The output txt file to save BUTool output
+OUTPUT_FILE=$(realpath "log_BUTool.txt")
+
 # Perform necessary text substitutions and save into a new txt file
 TMP_DIR=$(realpath "./tmp")
 if [ -d ${TMP_DIR} ]; then
@@ -22,6 +25,7 @@ cp ${ORIGINAL_SCRIPT_FILE} ${SCRIPT_FILE}
 
 sed -i "s|@LIB_DSAT_DEVICE|${LIB_DSAT_DEVICE}|g" ${SCRIPT_FILE}
 sed -i "s|@ADDRESS_TABLE_PATH|${ADDRESS_TABLE_PATH}|g" ${SCRIPT_FILE}
+sed -i "s|@OUTPUT_FILE|${OUTPUT_FILE}|g" ${SCRIPT_FILE}
 
 # Remove comments and empty lines
 sed -i "/^#/d" ${SCRIPT_FILE}

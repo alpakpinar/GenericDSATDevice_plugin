@@ -1,6 +1,7 @@
 # Add the device library and register the device
 add_lib @LIB_DSAT_DEVICE
 add_device GENERICDSAT @ADDRESS_TABLE_PATH
+add_dev_ofile @OUTPUT_FILE
 
 # Test that the zero padding (on default hex format works)
 write TEST_1.WORD_00 1
