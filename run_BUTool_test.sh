@@ -10,9 +10,16 @@ LIB_DSAT_DEVICE=$(realpath "lib/libDSAT_GenericDSATDevice.so")
 ADDRESS_TABLE_PATH=$(realpath "test/address_tables/test.adt")
 
 # The output txt file to save BUTool output
-OUTPUT_FILE=$(realpath "log_BUTool.txt")
+LOG_DIR="./logs"
+if [ ! -d ${LOG_DIR} ]; then
+  mkdir -p ${LOG_DIR}
+fi
+
+TIMESTAMP="$(date +%d%b%y_%H%M%S)"
+OUTPUT_FILE=$(realpath "${LOG_DIR}/log_BUTool_${TIMESTAMP}.txt")
 
 # Perform necessary text substitutions and save into a new txt file
+# under a temporary directory, which we'll remove after the test
 TMP_DIR=$(realpath "./tmp")
 if [ -d ${TMP_DIR} ]; then
   rm -r ${TMP_DIR}
