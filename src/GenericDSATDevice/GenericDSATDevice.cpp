@@ -73,7 +73,7 @@ CommandReturn::status GenericDSATDevice::StatusDisplay(std::vector<std::string> 
     genericDSATPtr->GenerateStatusDisplay(statusLevel, oss, tableName);
     
     // Print the resulting output stream and return
-    BUTool::CommandListBase::TextIO->Print(Level::INFO, "%s", oss.str().c_str());
+    Print(Level::INFO, "%s", oss.str().c_str());
     return CommandReturn::OK;
     
 }
