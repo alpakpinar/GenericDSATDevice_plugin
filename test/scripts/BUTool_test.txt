@@ -24,9 +24,11 @@ write TEST_4.SHOW_NONZERO.WORD_02 100
 write TEST_4.SHOW_ZERO.WORD_00 1
 write TEST_4.SHOW_ZERO.WORD_01 100
 
-# Test nzr values, the entire row must be displayed if a value
-# with Show="nzr" is non-zero
-write TEST_4.SHOW_NZR.WORD_03 0x100
+# Test nzr attribute, the entire row must be suppressed if a value is zero
+# With these writes, WORD_03 row should be correctly suppressed
+write TEST_4.SHOW_NZR.WORD_00 0x1
+write TEST_4.SHOW_NZR.WORD_01 0x1
+write TEST_4.SHOW_NZR.WORD_02 0x1
 
 # Test enumerations
 write TEST_5.ENUM_1.WORD_00 0
