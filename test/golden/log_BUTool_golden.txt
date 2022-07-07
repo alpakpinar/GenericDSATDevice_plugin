@@ -1,0 +1,55 @@
+           TEST_1| TEST_1|
+               --|-------|
+          WORD_00|      1|
+          WORD_01| 0x000A|
+          WORD_02| 0x0064|
+          WORD_03| 0x0123|
+          WORD_04| 0x1000|
+          WORD_05|      0|
+
+           TEST_2| SIGNED_INTS_16BIT| SIGNED_INTS_8BIT| UINTS|
+               --|------------------|-----------------|------|
+          WORD_00|             32767|              127|     1|
+          WORD_01|            -28673|             -113|   256|
+          WORD_02|                 0|                0|     0|
+
+           TEST_3| STATUS_1|
+               --|---------|
+          WORD_00|        0|
+          WORD_01|        0|
+          WORD_02|        0|
+          WORD_03|        0|
+
+           TEST_4| SHOW_NONZERO| SHOW_NZR| SHOW_ZERO|
+               --|-------------|---------|----------|
+          WORD_00|            1|        1|          |
+          WORD_01|             |        1|          |
+          WORD_02|         0x64|        1|         0|
+
+           TEST_5| ENUM_1|     ENUM_2|
+               --|-------|-----------|
+          WORD_00|   ZERO| ZERO (0x0)|
+          WORD_01|    ONE|  ONE (0x1)|
+          WORD_02|    TWO|  TWO (0x2)|
+
+           TEST_6| FLOATING_1| FLOATING_2| FLOATING_3|
+               --|-----------|-----------|-----------|
+          WORD_00|       1.00|       1.00|      -2.00|
+          WORD_01|       0.10|       1.00|      -1.00|
+
+           TEST_7|     FP16|
+               --|---------|
+          WORD_00|     0.33|
+          WORD_01|     1.00|
+          WORD_02|      inf|
+          WORD_03|     -inf|
+          WORD_04|    -2.00|
+          WORD_05| 6.55e+04|
+
+           TEST_8|       MERGED_64BIT|
+               --|-------------------|
+          WORD_00| 0x0000000100000001|
+          WORD_01| 0x0000010000000100|
+          WORD_02| 0x1000000010000000|
+
+SW VER: -1
