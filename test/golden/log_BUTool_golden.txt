@@ -1,3 +1,12 @@
+ TEST_LITERAL_USCORE| LITERAL UNDERSCORE| LITERAL_USCORES|
+                  --|-------------------|----------------|
+      TEST_NUMBER_00|                   |               0|
+      TEST_NUMBER_01|                   |               0|
+      TEST_NUMBER_02|                   |               0|
+             WORD_00|                  0|                |
+             WORD_01|                  0|                |
+             WORD_02|                  0|                |
+
            TEST_1| TEST_1|
                --|-------|
           WORD_00|      1|
@@ -52,16 +61,13 @@
           WORD_01| 0x0000010000000100|
           WORD_02| 0x1000000010000000|
 
-           TEST_9| LITERAL_UNDERSCORES| MULTIPLE UNDERSCORE| TEST MULTIPLE UNDERSCORE|
-               --|--------------------|--------------------|-------------------------|
-   TEST NUMBER_00|                    |                    |                        0|
-   TEST NUMBER_01|                    |                    |                        0|
-   TEST NUMBER_02|                    |                    |                        0|
-   TEST_NUMBER_00|                   0|                    |                         |
-   TEST_NUMBER_01|                   0|                    |                         |
-   TEST_NUMBER_02|                   0|                    |                         |
-   WORD NUMBER_00|                    |                   0|                         |
-   WORD NUMBER_01|                    |                   0|                         |
-   WORD NUMBER_02|                    |                   0|                         |
+           TEST_9| MULTIPLE UNDERSCORE| TEST MULTIPLE UNDERSCORE|
+               --|--------------------|-------------------------|
+   TEST NUMBER_00|                    |                        0|
+   TEST NUMBER_01|                    |                        0|
+   TEST NUMBER_02|                    |                        0|
+   WORD NUMBER_00|                   0|                         |
+   WORD NUMBER_01|                   0|                         |
+   WORD NUMBER_02|                   0|                         |
 
 SW VER: -1
