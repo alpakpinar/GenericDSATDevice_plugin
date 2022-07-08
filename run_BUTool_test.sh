@@ -8,7 +8,7 @@ if [ -z ${BUTOOL_PATH} ]; then
 fi
 
 LIB_DSAT_DEVICE=$(realpath "lib/libDSAT_GenericDSATDevice.so")
-ADDRESS_TABLE_PATH=$(realpath "test/address_tables/test.adt")
+ADDRESS_TABLE_PATH=$(realpath "test/address_tables/address_table.adt")
 
 # Perform necessary text substitutions and save into a new txt file
 # under a temporary directory, which we'll remove after the test
