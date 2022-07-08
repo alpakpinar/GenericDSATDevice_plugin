@@ -55,9 +55,11 @@ NORMAL=$(tput sgr0)
 
 DIFF=$(diff ${GOLDEN_LOG_FILE} ${OUTPUT_FILE})
 if [ "${DIFF}" != "" ]; then
-  echo -e "\xE2\x9D\x8C ${BOLD}StatusDisplay output does not match with golden logs!${NORMAL}"
-  echo "The diff:"
-  echo ${DIFF}
+  echo -e "\n\xE2\x9D\x8C ${BOLD}StatusDisplay output does not match with golden logs!${NORMAL}"
+  echo -e "\nResult of the diff:\n"
+  
+  # Call the diff command again to pretty print the output (echo doesn't do it easily)
+  diff ${GOLDEN_LOG_FILE} ${OUTPUT_FILE}
   rm -r ${TMP_DIR}
   exit 1
 fi
