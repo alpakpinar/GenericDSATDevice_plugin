@@ -1,3 +1,3 @@
 [submodule "dsat"]
 	path = dsat
-	url = git@gitlab.com:BU-EDF/dsat.git
+	url = https://gitlab.com/BU-EDF/dsat.git
